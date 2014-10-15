@@ -3,12 +3,10 @@
 class Point {
     private $X = 0;
     private $Y = 0;
-    private $neighborSpots = array();
     
     public function __construct( $x = 0, $y = 0) {
         $this->X = $x;
         $this->Y = $y;
-        $this->generateNeighbors( new Point( $x, $y ) );
     }
     
     public function getPoint() {
@@ -45,17 +43,15 @@ class Point {
         return new Point( $tmpX, $tmpY );
     }
     
-    private function generateNeighbors( Point $point ) {
-        $this->neighborSpots['C']   = $point;
-        $this->neighborSpots['NE']  = $point->shiftPoint( 1, -1 );
-        $this->neighborSpots['E']   = $point->shiftPoint( 1, 0 );
-        $this->neighborSpots['SE']  = $point->shiftPoint( 1, 1 );
-        $this->neighborSpots['NW']  = $point->shiftPoint( -1, -1 );
-        $this->neighborSpots['W']   = $point->shiftPoint( -1, 0 );
-        $this->neighborSpots['SW']  = $point->shiftPoint( -1, 1 );
-    }
-    
-    public function getNeighbors() {
-        return $this->neighborSpots;
+    public function generateNeighbors( ) {
+        $neighborSpots['C']   = $this;
+        $neighborSpots['NE']  = $this->shiftPoint( 1, -1 );
+        $neighborSpots['E']   = $this->shiftPoint( 1, 0 );
+        $neighborSpots['SE']  = $this->shiftPoint( 1, 1 );
+        $neighborSpots['NW']  = $this->shiftPoint( -1, -1 );
+        $neighborSpots['W']   = $this->shiftPoint( -1, 0 );
+        $neighborSpots['SW']  = $this->shiftPoint( -1, 1 );
+        
+        return $neighborSpots;
     }
 }

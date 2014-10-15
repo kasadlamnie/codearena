@@ -47,25 +47,8 @@ class GameChecker {
     }
     
     public function transformBaseLocation( $direction, Point $unit ) {
-        $baseLocation = new Point();
-        
-        switch ($direction) {
-            case "NE":
-                $baseLocation = $unit->shiftPoint( 1, -1); break;
-            case "E":
-                $baseLocation = $unit->shiftPoint( 1, 0); break;
-            case "SE":
-                $baseLocation = $unit->shiftPoint( 1, 1); break;
-            case "NW":
-                $baseLocation = $unit->shiftPoint( -1, -1); break;
-            case "W":
-                $baseLocation = $unit->shiftPoint( -1, 0); break;
-            case "SW":
-                $baseLocation = $unit->shiftPoint( -1, 1); break;
-            default:
-                break;
-        }
-        return $baseLocation;
+        $baseLocation = $unit->generateNeighbors();
+        return $baseLocation[$direction];
     }
     
     

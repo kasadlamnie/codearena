@@ -61,8 +61,8 @@ while ($data = socket_read($socket, 2555, PHP_NORMAL_READ)) {
                             }
                         }
                         
-//                        $baseLocation = $game->transformBaseLocation( $key, $unit->getuLocation() );                        
-//                        $game->setBaseLocation( $baseLocation->getPoint() );
+                        $baseLocation = $game->transformBaseLocation( $key, $unit->getuLocation() );                        
+                        $game->setBaseLocation( $baseLocation->getPoint() );
                     }
                     echo'BAZA:<pre>';print_r( $game->getBaseLocation() );echo'</pre><hr/>';
                                         
