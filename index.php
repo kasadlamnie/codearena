@@ -67,7 +67,11 @@ while ($data = socket_read($socket, 2555, PHP_NORMAL_READ)) {
                     echo'BAZA:<pre>';print_r( $game->getBaseLocation() );echo'</pre><hr/>';
                                         
                     if( in_array( $sees['E']['background'], $game->getAllBackgrounds() ) || in_array( $sees['NW']['background'], $game->getAllBackgrounds() ) ) {
-                        $game->setMapSize( $unit->getuLocation()->shiftPoint( 1, 1 )->returnMaxValues( $game->getMapSize() ) );
+                        if( $unit->getuLocation()->getX() % 2 === 0 ) {
+                            $game->setMapSize( $unit->getuLocation()->shiftPoint( 1, 0 )->returnMaxValues( $game->getMapSize() ) );
+                        } else {
+                            $game->setMapSize( $unit->getuLocation()->shiftPoint( 1, 1 )->returnMaxValues( $game->getMapSize() ) );
+                        }
                         $mapSizeChanged = true;
                     }
                     echo'ROZMIAR MAPY:<pre>';print_r( $game->getMapSize() );echo'</pre><hr/>';
@@ -136,7 +140,7 @@ while ($data = socket_read($socket, 2555, PHP_NORMAL_READ)) {
                     
 //  test
                     if( $unit->getuOrientation() == "E" && $unit->getuLocation()->getY() > 1 ) {
-                        $package = $control->move( $unit->getuId(), "NW");
+                        $package = $control->move( $unit->getuId(), "SE");
                     } elseif( $unit->getuOrientation() == "E" && $unit->getuLocation()->getX() > 0 ) {
                         $package = $control->move( $unit->getuId(), "E" );
                     } else {
