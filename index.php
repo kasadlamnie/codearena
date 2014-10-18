@@ -121,23 +121,23 @@ while ($data = socket_read($socket, 2555, PHP_NORMAL_READ)) {
                     // weryfikuj czy pole zostalo juz sprawdzone
                         // buduj tablece pol sasiednich
                     $neighborSpots = array();
-                    $neighborSpots['C'] = new Point( $unit->getuLocation() );
-                    $neighborSpots['NE'] = new Point( $unit->getuLocation()->shiftPoint( 1, -1 ) );
-                    $neighborSpots['E'] = new Point( $unit->getuLocation()->shiftPoint( 1, 0 ) );
-                    $neighborSpots['SE'] = new Point( $unit->getuLocation()->shiftPoint( 1, 1 ) );
-                    $neighborSpots['NW'] = new Point( $unit->getuLocation()->shiftPoint( -1, -1 ) );
-                    $neighborSpots['W'] = new Point( $unit->getuLocation()->shiftPoint( -1, 0 ) );
-                    $neighborSpots['SW'] = new Point( $unit->getuLocation()->shiftPoint( -1, 1 ) );
+                    $neighborSpots['C'] = $unit->getuLocation();
+                    $neighborSpots['NE'] = $unit->getuLocation()->shiftPoint( 1, -1 );
+                    $neighborSpots['E'] = $unit->getuLocation()->shiftPoint( 1, 0 );
+                    $neighborSpots['SE'] = $unit->getuLocation()->shiftPoint( 1, 1 );
+                    $neighborSpots['NW'] = $unit->getuLocation()->shiftPoint( -1, -1 );
+                    $neighborSpots['W'] = $unit->getuLocation()->shiftPoint( -1, 0 );
+                    $neighborSpots['SW'] = $unit->getuLocation()->shiftPoint( -1, 1 );
                     
-                    foreach ($neighborSpots as $key => $value) {
+                    foreach ( $neighborSpots as $key => $value ) {
                         if( $game->checkIfSpotToCheck( $value ) ) {
                             // sprawdzam punkt
                             // przenosze do sprawdzonych
                             $game->markSpotAsChecked( $value );
                         }
                     }
-
                     
+
 //  test
                     if( $unit->getuOrientation() == "E" && $unit->getuLocation()->getY() > 1 ) {
                         $package = $control->move( $unit->getuId(), "SE");

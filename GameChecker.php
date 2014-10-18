@@ -54,7 +54,7 @@ class GameChecker {
     
     public function addPointsToCheck( Point $point ) {
         $this->spotsToCheck []= $point ;
-        echo "Dodaje punkt " . $point->getX() . " - " . $point->getY() . "<br/>";
+//        echo "Dodaje punkt " . $point->getX() . " - " . $point->getY() . "<br/>";
     }
     
     public function checkIfSpotToCheck( Point $point ) {
