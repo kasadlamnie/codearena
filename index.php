@@ -87,8 +87,7 @@ while ($data = socket_read($socket, 2555, PHP_NORMAL_READ)) {
                         }
                     }
                     
-                    
-                    
+                  
                     
 /*                    
                     echo $responseAnalizer->checkResponseTime( $in );
